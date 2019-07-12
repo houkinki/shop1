@@ -1,0 +1,79 @@
+<body>
+<div class="header-bar">
+    <div class="header-inner">
+        <ul class="father">
+            <li><a>{$city.name}</a></li>
+            <li>|</li>
+            <li class="city">
+                <a>切换城市<span class="arrow-down-logo"></span></a>
+                <div class="city-drop-down">
+                    <h3>热门城市</h3>
+                    <ul class="son">
+                        {volist name="citys" id="vo"}
+                        <li><a href="{:url('index/index',['city'=>$vo['uname']])}">{$vo.name}</a></li>
+                        {/volist}
+                    </ul>
+
+                </div>
+            </li>
+            {if condition="$user"}
+            <li> 欢迎您：{$user->username} </li>
+            <li> <a href="/index/user/logout">退出登录</a> </li>
+            {else /}
+            <li><a href="/index/user/register">注册</a></li>
+            <li>|</li>
+            <li><a href="/index/user/login">登录</a></li>
+            {/if}
+        </ul>
+    </div>
+</div>
+
+<div class="search">
+    <img src="__STATIC__/index/image/logo.png" />
+
+</div>
+
+<div class="nav-bar-header">
+    <div class="nav-inner">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <span class="item">全部分类</span>
+                <div class="left-menu">
+                    {volist name="cats" id="cat"}
+                    <div class="level-item">
+                        <div class="first-level">
+                            <dl>
+                                <dt class="title"><a href="{:url('lists/index',['id'=>$key])}" target="_top">{$cat[0]}</a></dt>
+                                {volist name="$cat[1]" id="vo" length="2"}
+                                <dd><a href="{:url('lists/index',['id'=>$vo.id])}" target="_top" class="">{$vo.name}</a></dd>
+                                {/volist}
+
+                            </dl>
+                        </div>
+                        <div class="second-level">
+                            <div class="section">
+                                <div class="section-item clearfix no-top-border">
+                                    <h3>其他分类</h3>
+                                    <ul>
+                                        <li><a class="hot">精选品牌</a></li>
+                                        {volist name="cat[1]" id="vo"}
+                                        <li><a>{$vo.name}</a></li>
+                                        {/volist}
+
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+
+                </div>
+            </li>
+            <li class="nav-item"><a class="item first active">首页</a></li>
+            <li class="nav-item"><a class="item">团购</a></li>
+            <li class="nav-item"><a class="item">商户</a></li>
+        </ul>
+    </div>
+</div>
